@@ -29,14 +29,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   BlueThermalPrinter bluetooth = BlueThermalPrinter.instance;
-  final BluetoothDevice _device =
-      BluetoothDevice("XP-365B", "DC:0D:30:18:42:6B");
+  late BluetoothDevice _device;
+  final String printerName = "XP-365B";
+  final String macAddress = "DC:0D:30:18:42:6B";
   bool _connected = false;
 
   late String pathImage;
 
   @override
   void initState() {
+    _device = BluetoothDevice(printerName, macAddress);
     _connected = _device.connected;
     if (kDebugMode) {
       print(_connected);
